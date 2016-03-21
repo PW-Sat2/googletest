@@ -413,6 +413,10 @@ struct _RTL_CRITICAL_SECTION;
 #  include <android/api-level.h>  // NOLINT
 #endif
 
+#ifndef GTEST_MOCK_FS
+# define GTEST_MOCK_FS 0
+#endif
+
 // Defines this to true iff Google Test can use POSIX regular expressions.
 #ifndef GTEST_HAS_POSIX_RE
 # if GTEST_OS_LINUX_ANDROID

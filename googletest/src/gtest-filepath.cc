@@ -97,7 +97,9 @@ static bool IsPathSeparator(char c) {
 
 // Returns the current working directory, or "" if unsuccessful.
 FilePath FilePath::GetCurrentDir() {
-#if GTEST_OS_WINDOWS_MOBILE || GTEST_OS_WINDOWS_PHONE || GTEST_OS_WINDOWS_RT
+#if GTEST_MOCK_FS == 1
+  return FilePath(kCurrentDirectoryString);
+#elif GTEST_OS_WINDOWS_MOBILE || GTEST_OS_WINDOWS_PHONE || GTEST_OS_WINDOWS_RT
   // Windows CE doesn't have a current directory, so we just return
   // something reasonable.
   return FilePath(kCurrentDirectoryString);
@@ -263,6 +265,9 @@ bool FilePath::IsRootDirectory() const {
 
 // Returns true if pathname describes an absolute path.
 bool FilePath::IsAbsolutePath() const {
+#if GTEST_MOCK_FS == 1
+  return true;
+#endif
   const char* const name = pathname_.c_str();
 #if GTEST_OS_WINDOWS
   return pathname_.length() >= 3 &&
@@ -306,6 +311,9 @@ bool FilePath::IsDirectory() const {
 // the directories already exist; returns false if unable to create directories
 // for any reason.
 bool FilePath::CreateDirectoriesRecursively() const {
+#if GTEST_MOCK_FS == 1
+  return true;
+#endif
   if (!this->IsDirectory()) {
     return false;
   }
@@ -323,7 +331,9 @@ bool FilePath::CreateDirectoriesRecursively() const {
 // directory for any reason, including if the parent directory does not
 // exist. Not named "CreateDirectory" because that's a macro on Windows.
 bool FilePath::CreateFolder() const {
-#if GTEST_OS_WINDOWS_MOBILE
+#if GTEST_MOCK_FS == 1
+  int result = 0;
+#elif TEST_OS_WINDOWS_MOBILE
   FilePath removed_sep(this->RemoveTrailingPathSeparator());
   LPCWSTR unicode = String::AnsiToUtf16(removed_sep.c_str());
   int result = CreateDirectory(unicode, NULL) ? 0 : -1;
