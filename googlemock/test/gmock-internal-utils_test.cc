@@ -333,35 +333,35 @@ TEST(TupleMatchesTest, WorksForSize5) {
 
 // Tests that Assert(true, ...) succeeds.
 TEST(AssertTest, SucceedsOnTrue) {
-  Assert(true, __FILE__, __LINE__, "This should succeed.");
-  Assert(true, __FILE__, __LINE__);  // This should succeed too.
+  Assert(true, "__FILE__", __LINE__, "This should succeed.");
+  Assert(true, "__FILE__", __LINE__);  // This should succeed too.
 }
 
 // Tests that Assert(false, ...) generates a fatal failure.
 TEST(AssertTest, FailsFatallyOnFalse) {
   EXPECT_DEATH_IF_SUPPORTED({
-    Assert(false, __FILE__, __LINE__, "This should fail.");
+    Assert(false, "__FILE__", __LINE__, "This should fail.");
   }, "");
 
   EXPECT_DEATH_IF_SUPPORTED({
-    Assert(false, __FILE__, __LINE__);
+    Assert(false, "__FILE__", __LINE__);
   }, "");
 }
 
 // Tests that Expect(true, ...) succeeds.
 TEST(ExpectTest, SucceedsOnTrue) {
-  Expect(true, __FILE__, __LINE__, "This should succeed.");
-  Expect(true, __FILE__, __LINE__);  // This should succeed too.
+  Expect(true, "__FILE__", __LINE__, "This should succeed.");
+  Expect(true, "__FILE__", __LINE__);  // This should succeed too.
 }
 
 // Tests that Expect(false, ...) generates a non-fatal failure.
 TEST(ExpectTest, FailsNonfatallyOnFalse) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
-    Expect(false, __FILE__, __LINE__, "This should fail.");
+    Expect(false, "__FILE__", __LINE__, "This should fail.");
   }, "This should fail");
 
   EXPECT_NONFATAL_FAILURE({  // NOLINT
-    Expect(false, __FILE__, __LINE__);
+    Expect(false, "__FILE__", __LINE__);
   }, "Expectation failed");
 }
 

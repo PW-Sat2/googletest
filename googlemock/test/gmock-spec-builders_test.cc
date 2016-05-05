@@ -896,7 +896,7 @@ TEST(ExpectCallTest, TakesDefaultActionWhenWillListIsExhausted) {
 
 TEST(FunctionMockerMessageTest, ReportsExpectCallLocationForExhausedActions) {
   MockB b;
-  std::string expect_call_location = FormatFileLocation(__FILE__, __LINE__ + 1);
+  std::string expect_call_location = FormatFileLocation("__FILE__", __LINE__ + 1);
   EXPECT_CALL(b, DoB()).Times(AnyNumber()).WillOnce(Return(1));
 
   EXPECT_EQ(1, b.DoB());
@@ -914,7 +914,7 @@ TEST(FunctionMockerMessageTest,
   CaptureStdout();
   {
     NaggyMock<MockB> b;
-    on_call_location = FormatFileLocation(__FILE__, __LINE__ + 1);
+    on_call_location = FormatFileLocation("__FILE__", __LINE__ + 1);
     ON_CALL(b, DoB(_)).WillByDefault(Return(0));
     b.DoB(0);
   }

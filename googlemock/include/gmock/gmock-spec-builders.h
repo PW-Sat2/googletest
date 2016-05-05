@@ -1154,7 +1154,7 @@ class TypedExpectation : public ExpectationBase {
           GTEST_EXCLUSIVE_LOCK_REQUIRED_(g_gmock_mutex) {
     g_gmock_mutex.AssertHeld();
     const int count = call_count();
-    Assert(count >= 1, __FILE__, __LINE__,
+    Assert(count >= 1, "__FILE__", __LINE__,
            "call_count() is <= 0 when GetCurrentAction() is "
            "called - this should never happen.");
 
@@ -1836,12 +1836,12 @@ inline Expectation::Expectation(internal::ExpectationBase& exp)  // NOLINT
 // See CompilesWithMethodNameExpandedFromMacro tests in
 // internal/gmock-spec-builders_test.cc for more details.
 #define GMOCK_ON_CALL_IMPL_(obj, call) \
-    ((obj).gmock_##call).InternalDefaultActionSetAt(__FILE__, __LINE__, \
+    ((obj).gmock_##call).InternalDefaultActionSetAt("__FILE__", __LINE__, \
                                                     #obj, #call)
 #define ON_CALL(obj, call) GMOCK_ON_CALL_IMPL_(obj, call)
 
 #define GMOCK_EXPECT_CALL_IMPL_(obj, call) \
-    ((obj).gmock_##call).InternalExpectedAt(__FILE__, __LINE__, #obj, #call)
+    ((obj).gmock_##call).InternalExpectedAt("__FILE__", __LINE__, #obj, #call)
 #define EXPECT_CALL(obj, call) GMOCK_EXPECT_CALL_IMPL_(obj, call)
 
 #endif  // GMOCK_INCLUDE_GMOCK_GMOCK_SPEC_BUILDERS_H_

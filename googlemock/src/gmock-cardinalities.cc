@@ -56,16 +56,16 @@ class BetweenCardinalityImpl : public CardinalityInterface {
     if (min < 0) {
       ss << "The invocation lower bound must be >= 0, "
          << "but is actually " << min << ".";
-      internal::Expect(false, __FILE__, __LINE__, ss.str());
+      internal::Expect(false, "__FILE__", __LINE__, ss.str());
     } else if (max < 0) {
       ss << "The invocation upper bound must be >= 0, "
          << "but is actually " << max << ".";
-      internal::Expect(false, __FILE__, __LINE__, ss.str());
+      internal::Expect(false, "__FILE__", __LINE__, ss.str());
     } else if (min > max) {
       ss << "The invocation upper bound (" << max
          << ") must be >= the invocation lower bound (" << min
          << ").";
-      internal::Expect(false, __FILE__, __LINE__, ss.str());
+      internal::Expect(false, "__FILE__", __LINE__, ss.str());
     }
   }
 

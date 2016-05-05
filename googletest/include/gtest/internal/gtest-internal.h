@@ -1104,7 +1104,7 @@ class NativeArray {
     = ::testing::Message()
 
 #define GTEST_MESSAGE_(message, result_type) \
-  GTEST_MESSAGE_AT_(__FILE__, __LINE__, message, result_type)
+  GTEST_MESSAGE_AT_("__FILE__", __LINE__, message, result_type)
 
 #define GTEST_FATAL_FAILURE_(message) \
   return GTEST_MESSAGE_(message, ::testing::TestPartResult::kFatalFailure)
@@ -1226,7 +1226,7 @@ class GTEST_TEST_CLASS_NAME_(test_case_name, test_name) : public parent_class {\
   ::test_info_ =\
     ::testing::internal::MakeAndRegisterTestInfo(\
         #test_case_name, #test_name, NULL, NULL, \
-        ::testing::internal::CodeLocation(__FILE__, __LINE__), \
+        ::testing::internal::CodeLocation("__FILE__", __LINE__), \
         (parent_id), \
         parent_class::SetUpTestCase, \
         parent_class::TearDownTestCase, \

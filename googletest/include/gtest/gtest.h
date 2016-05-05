@@ -2114,7 +2114,7 @@ GTEST_API_ AssertionResult DoubleLE(const char* expr1, const char* expr2,
 // lines.
 #define SCOPED_TRACE(message) \
   ::testing::internal::ScopedTrace GTEST_CONCAT_TOKEN_(gtest_trace_, __LINE__)(\
-    __FILE__, __LINE__, ::testing::Message() << (message))
+    "__FILE__", __LINE__, ::testing::Message() << (message))
 
 // Compile-time assertion for type equality.
 // StaticAssertTypeEq<type1, type2>() compiles iff type1 and type2 are

@@ -284,8 +284,8 @@ void DeathTestAbort(const std::string& message) {
   do { \
     if (!::testing::internal::IsTrue(expression)) { \
       DeathTestAbort( \
-          ::std::string("CHECK failed: File ") + __FILE__ +  ", line " \
-          + ::testing::internal::StreamableToString(__LINE__) + ": " \
+          ::std::string("CHECK failed: File ") + "__FILE__" +  ", line " \
+          + ::testing::internal::StreamableToString("__FILE__") + ": " \
           + #expression); \
     } \
   } while (::testing::internal::AlwaysFalse())

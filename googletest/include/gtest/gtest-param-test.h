@@ -1389,7 +1389,7 @@ internal::CartesianProductHolder10<Generator1, Generator2, Generator3,
           GetTestCasePatternHolder<test_case_name>(\
               #test_case_name, \
               ::testing::internal::CodeLocation(\
-                  __FILE__, __LINE__))->AddTestPattern(\
+                  "__FILE__", __LINE__))->AddTestPattern(\
                       #test_case_name, \
                       #test_name, \
                       new ::testing::internal::TestMetaFactory< \
@@ -1431,11 +1431,11 @@ internal::CartesianProductHolder10<Generator1, Generator2, Generator3,
           GetTestCasePatternHolder<test_case_name>(\
               #test_case_name, \
               ::testing::internal::CodeLocation(\
-                  __FILE__, __LINE__))->AddTestCaseInstantiation(\
+                  "__FILE__", __LINE__))->AddTestCaseInstantiation(\
                       #prefix, \
                       &gtest_##prefix##test_case_name##_EvalGenerator_, \
                       &gtest_##prefix##test_case_name##_EvalGenerateName_, \
-                      __FILE__, __LINE__)
+                      "__FILE__", __LINE__)
 
 }  // namespace testing
 

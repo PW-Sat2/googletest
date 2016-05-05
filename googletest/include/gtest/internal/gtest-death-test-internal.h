@@ -166,7 +166,7 @@ GTEST_API_ bool ExitedUnsuccessfully(int exit_status);
         stderr, \
         "\n%s: Caught std::exception-derived exception escaping the " \
         "death test statement. Exception message: %s\n", \
-        ::testing::internal::FormatFileLocation(__FILE__, __LINE__).c_str(), \
+        ::testing::internal::FormatFileLocation("__FILE__", __LINE__).c_str(), \
         gtest_exception.what()); \
     fflush(stderr); \
     death_test->Abort(::testing::internal::DeathTest::TEST_THREW_EXCEPTION); \
@@ -188,7 +188,7 @@ GTEST_API_ bool ExitedUnsuccessfully(int exit_status);
     const ::testing::internal::RE& gtest_regex = (regex); \
     ::testing::internal::DeathTest* gtest_dt; \
     if (!::testing::internal::DeathTest::Create(#statement, &gtest_regex, \
-        __FILE__, __LINE__, &gtest_dt)) { \
+        "__FILE__", __LINE__, &gtest_dt)) { \
       goto GTEST_CONCAT_TOKEN_(gtest_label_, __LINE__); \
     } \
     if (gtest_dt != NULL) { \

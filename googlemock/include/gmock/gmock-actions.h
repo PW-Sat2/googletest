@@ -78,7 +78,7 @@ struct BuiltInDefaultValueGetter {
 template <typename T>
 struct BuiltInDefaultValueGetter<T, false> {
   static T Get() {
-    Assert(false, __FILE__, __LINE__,
+    Assert(false, "__FILE__", __LINE__,
            "Default action undefined for the function return type.");
     return internal::Invalid<T>();
     // The above statement will never be reached, but is required in
@@ -386,7 +386,7 @@ class Action {
   // pointer and a pointer to const.)
   Result Perform(const ArgumentTuple& args) const {
     internal::Assert(
-        !IsDoDefault(), __FILE__, __LINE__,
+        !IsDoDefault(), "__FILE__", __LINE__,
         "You are using DoDefault() inside a composite action like "
         "DoAll() or WithArgs().  This is not supported for technical "
         "reasons.  Please instead spell out the default action, or "

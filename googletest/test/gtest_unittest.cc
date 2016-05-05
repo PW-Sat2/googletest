@@ -95,7 +95,7 @@ class StreamingListenerTest : public Test {
       : fake_sock_writer_(new FakeSocketWriter),
         streamer_(fake_sock_writer_),
         test_info_obj_("FooTest", "Bar", NULL, NULL,
-                       CodeLocation(__FILE__, __LINE__), 0, NULL) {}
+                       CodeLocation("__FILE__", __LINE__), 0, NULL) {}
 
  protected:
   string* output() { return &(fake_sock_writer_->output_); }
@@ -5338,7 +5338,7 @@ TEST_F(TestInfoTest, result) {
   const int expected_line = __LINE__ - 1; \
   const TestInfo* const test_info = GetUnitTestImpl()->current_test_info(); \
   ASSERT_TRUE(test_info); \
-  EXPECT_STREQ(__FILE__, test_info->file()); \
+  EXPECT_STREQ("__FILE__", test_info->file()); \
   EXPECT_EQ(expected_line, test_info->line())
 
 TEST(CodeLocationForTEST, Verify) {
