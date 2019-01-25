@@ -165,6 +165,7 @@ function(cxx_shared_library name cxx_flags)
 endfunction()
 
 function(cxx_library name cxx_flags)
+  message(STATUS "CXX library ${name} with flags ${cxx_flags}")
   cxx_library_with_type(${name} "" "${cxx_flags}" ${ARGN})
 endfunction()
 
